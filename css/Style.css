@@ -1,0 +1,537 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: #0a0e27;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #e0e6ff;
+}
+
+canvas {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+}
+
+/* ============================================
+   PANEL LATERAL PRINCIPAL
+   ============================================ */
+#control-panel {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 380px;
+    height: 100vh;
+    background: linear-gradient(135deg, #0f1438 0%, #1a1f3a 100%);
+    border-left: 2px solid #00d4ff;
+    padding: 20px;
+    overflow-y: auto;
+    z-index: 1000;
+    box-shadow: -10px 0 40px rgba(0, 212, 255, 0.15);
+    animation: slideInRight 0.6s ease-out;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Scrollbar personalizado */
+#control-panel::-webkit-scrollbar {
+    width: 8px;
+}
+
+#control-panel::-webkit-scrollbar-track {
+    background: rgba(0, 212, 255, 0.1);
+    border-radius: 10px;
+}
+
+#control-panel::-webkit-scrollbar-thumb {
+    background: #00d4ff;
+    border-radius: 10px;
+}
+
+#control-panel::-webkit-scrollbar-thumb:hover {
+    background: #00f0ff;
+}
+
+/* ============================================
+   ENCABEZADO Y TÍTULO
+   ============================================ */
+.panel-header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(0, 212, 255, 0.3);
+}
+
+.studio-title {
+    font-size: 24px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #00d4ff 0%, #00f0ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+}
+
+.studio-subtitle {
+    font-size: 12px;
+    color: #7a8fc7;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+}
+
+/* ============================================
+   INSTRUCCIONES
+   ============================================ */
+.instructions {
+    background: rgba(0, 212, 255, 0.08);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 20px;
+    font-size: 11px;
+    line-height: 1.6;
+    color: #a0b0e0;
+}
+
+.instructions strong {
+    color: #00d4ff;
+    display: block;
+    margin-bottom: 8px;
+    font-size: 12px;
+}
+
+/* ============================================
+   CATEGORÍAS DE ELEMENTOS
+   ============================================ */
+.element-category {
+    margin-bottom: 24px;
+}
+
+.category-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #00d4ff;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 12px;
+    padding-left: 8px;
+    border-left: 3px solid #00d4ff;
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+}
+
+.category-title:hover {
+    color: #00f0ff;
+    border-left-color: #00f0ff;
+    padding-left: 12px;
+}
+
+.category-icon {
+    font-size: 12px;
+    color: #00d4ff;
+    display: inline-block;
+    transition: transform 0.2s ease;
+}
+
+.category-content {
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+/* ============================================
+   ELEMENTO DE CONTROL (ITEM)
+   ============================================ */
+.control-item {
+    background: rgba(26, 31, 58, 0.8);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
+}
+
+.control-item:hover {
+    border-color: rgba(0, 212, 255, 0.5);
+    background: rgba(26, 31, 58, 1);
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.2);
+}
+
+.control-item.no-toggle {
+    background: rgba(26, 31, 58, 0.6);
+    border-color: rgba(0, 212, 255, 0.15);
+}
+
+.control-item.no-toggle:hover {
+    border-color: rgba(0, 212, 255, 0.3);
+}
+
+.item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    transition: all 0.2s ease;
+}
+
+.item-header:hover {
+    background: rgba(0, 212, 255, 0.05);
+}
+
+.item-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: #e0e6ff;
+}
+
+.collapse-icon {
+    font-size: 11px;
+    color: #00d4ff;
+    transition: transform 0.2s ease;
+    display: inline-block;
+}
+
+.item-controls {
+    display: flex;
+    gap: 8px;
+}
+
+.toggle-btn {
+    width: 40px;
+    height: 24px;
+    border-radius: 12px;
+    border: none;
+    background: #00d4ff;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+}
+
+.toggle-btn.off {
+    background: #444a6f;
+    box-shadow: 0 0 5px rgba(68, 74, 111, 0.3);
+}
+
+.toggle-btn::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: white;
+    top: 2px;
+    left: 2px;
+    transition: all 0.3s ease;
+}
+
+.toggle-btn.off::after {
+    left: 18px;
+}
+
+/* ============================================
+   BOTÓN RESET INDIVIDUAL
+   ============================================ */
+.reset-item-btn {
+    background: linear-gradient(135deg, #ff9100 0%, #ff6b00 100%);
+    border: 1px solid rgba(255, 150, 0, 0.5);
+    border-radius: 4px;
+    color: white;
+    padding: 4px 8px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 8px rgba(255, 107, 0, 0.4);
+}
+
+.reset-item-btn:hover {
+    box-shadow: 0 0 15px rgba(255, 107, 0, 0.7);
+    transform: scale(1.05);
+}
+
+.reset-item-btn:active {
+    transform: scale(0.95);
+}
+
+/* ============================================
+   CONTROLES DE SLIDERS
+   ============================================ */
+.slider-group {
+    margin-bottom: 8px;
+}
+
+.slider-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    color: #7a8fc7;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.slider-value {
+    color: #00d4ff;
+    font-weight: 600;
+}
+
+input[type="range"] {
+    width: 100%;
+    height: 6px;
+    border-radius: 3px;
+    background: linear-gradient(90deg, #00d4ff 0%, #00d4ff var(--value), rgba(0, 212, 255, 0.2) var(--value), rgba(0, 212, 255, 0.2) 100%);
+    outline: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #00f0ff;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.8);
+    transition: all 0.2s ease;
+    border: 2px solid #0f1438;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.3);
+    box-shadow: 0 0 20px rgba(0, 240, 255, 1);
+}
+
+input[type="range"]::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #00f0ff;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.8);
+    transition: all 0.2s ease;
+    border: 2px solid #0f1438;
+}
+
+input[type="range"]::-moz-range-thumb:hover {
+    transform: scale(1.3);
+    box-shadow: 0 0 20px rgba(0, 240, 255, 1);
+}
+
+/* ============================================
+   PANEL SUPERIOR (HUD)
+   ============================================ */
+#hud-panel {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: rgba(10, 14, 39, 0.9);
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    border-radius: 8px;
+    padding: 16px;
+    max-width: 350px;
+    color: #a0b0e0;
+    font-size: 12px;
+    line-height: 1.6;
+    backdrop-filter: blur(10px);
+    z-index: 999;
+    animation: slideInDown 0.6s ease-out 0.2s backwards;
+}
+
+@keyframes slideInDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.hud-title {
+    color: #00d4ff;
+    font-weight: 700;
+    margin-bottom: 10px;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.hud-item {
+    margin-bottom: 6px;
+    padding-left: 8px;
+    border-left: 2px solid rgba(0, 212, 255, 0.3);
+}
+
+/* ============================================
+   RESET BUTTON GLOBAL
+   ============================================ */
+.reset-button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 20px;
+    background: linear-gradient(135deg, #ff6b6b 0%, #ff4757 100%);
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-weight: 700;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+}
+
+.reset-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(255, 107, 107, 0.5);
+}
+
+.reset-button:active {
+    transform: translateY(0);
+}
+
+/* ============================================
+   SCREENSHOT BUTTON
+   ============================================ */
+.screenshot-button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 12px;
+    margin-bottom: 8px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-weight: 700;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.screenshot-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(102, 126, 234, 0.5);
+}
+
+.screenshot-button:active {
+    transform: translateY(0);
+}
+
+/* ============================================
+   CONTROLES DE TEXTURA
+   ============================================ */
+.texture-control {
+    background: rgba(26, 31, 58, 0.8);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
+}
+
+.texture-control:hover {
+    border-color: rgba(0, 212, 255, 0.5);
+    background: rgba(26, 31, 58, 1);
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.2);
+}
+
+.texture-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #e0e6ff;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.texture-input-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+.texture-input {
+    display: none;
+}
+
+.texture-browse-btn {
+    width: 100%;
+    padding: 10px;
+    background: linear-gradient(135deg, #00d4ff 0%, #00f0ff 100%);
+    border: 1px solid rgba(0, 212, 255, 0.5);
+    border-radius: 6px;
+    color: #0f1438;
+    font-weight: 700;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.4);
+}
+
+.texture-browse-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.7);
+}
+
+.texture-browse-btn:active {
+    transform: translateY(0);
+}
+
+.texture-status {
+    font-size: 10px;
+    color: #7a8fc7;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(0, 212, 255, 0.1);
+}
+
+.texture-status.loaded {
+    color: #00d4ff;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+    #control-panel {
+        width: 100%;
+        height: 50%;
+        right: 0;
+        bottom: 0;
+        border-left: none;
+        border-top: 2px solid #00d4ff;
+        border-radius: 12px 12px 0 0;
+    }
+
+    #hud-panel {
+        display: none;
+    }
+}
