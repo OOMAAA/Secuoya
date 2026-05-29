@@ -64,7 +64,7 @@ console.log('✅ Iluminación y grid agregados');
 // CARGA DE HDRI (EXR)
 // ==========================================
 const exrLoader = new EXRLoader();
-exrLoader.load('hdri/environment.exr', function (texture) {
+exrLoader.load('./hdri/environment.exr', function (texture) {
     try {
         const pmremGenerator = new THREE.PMREMGenerator(renderer);
         const envMap = pmremGenerator.fromEquirectangular(texture).texture;
@@ -147,7 +147,7 @@ function loadElement(data) {
 
     // Intentar cargar GLB
     loader.load(
-        `models/${data.glbFile}.glb`,
+        `./models/${data.glbFile}.glb`,
         (gltf) => {
             scene.remove(mesh);
             
