@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estudio 8 Canal 13 - Gráfica Secuoya</title>
+    <link rel="stylesheet" href="css/Style.css">
+</head>
+<body>
+
+<!-- HUD Panel (Instrucciones arriba a la izquierda) -->
+<div id="hud-panel">
+    <div class="hud-title">🎬 Control de Estudio 3D</div>
+    <div class="hud-item">🖱️ Click izq. + arrastrar: Rotar vista</div>
+    <div class="hud-item">🖱️ Click der. + arrastrar: Panear cámara</div>
+    <div class="hud-item">🔄 Rueda del mouse: Zoom</div>
+    <div class="hud-item">⚙️ Panel derecho: Controlar elementos</div>
+</div>
+
+<!-- Botón Toggle Panel (FUERA del panel para que siempre sea visible) -->
+<button id="toggle-panel-btn" class="toggle-panel-btn">☰</button>
+
+<!-- Control Panel (Panel derecha) -->
+<div id="control-panel">
+    <div class="panel-header">
+        <div class="studio-title">Estudio 8 Canal 13</div>
+        <div class="studio-subtitle">Gráfica Secuoya</div>
+    </div>
+
+    <div class="instructions">
+        <strong>⚡ Cómo usar:</strong>
+        Activa/desactiva elementos, ajusta posiciones con los sliders y rotación. Los cambios se aplican en tiempo real al estudio 3D.
+    </div>
+
+    <!-- CÁMARAS -->
+    <div class="element-category">
+        <div class="category-title">
+            <span class="category-icon">▼</span>
+            📹 Cámaras (4)
+        </div>
+        <div id="cameras-container" class="category-content"></div>
+    </div>
+
+    <!-- PLUMAS / GRÚAS -->
+    <div class="element-category">
+        <div class="category-title">
+            <span class="category-icon">▼</span>
+            🏗️ Plumas / Grúas (2)
+        </div>
+        <div id="cranes-container" class="category-content"></div>
+    </div>
+
+    <!-- ROBOT TRACKING -->
+    <div class="element-category">
+        <div class="category-title">
+            <span class="category-icon">▼</span>
+            🤖 Robots de Tracking (1)
+        </div>
+        <div id="robots-container" class="category-content"></div>
+    </div>
+
+    <!-- TALENTO / PRESENTADORES -->
+    <div class="element-category">
+        <div class="category-title">
+            <span class="category-icon">▼</span>
+            👥 Talentos (4)
+        </div>
+        <div id="talent-container" class="category-content"></div>
+    </div>
+
+    <!-- OBJETOS GENÉRICOS -->
+    <div class="element-category">
+        <div class="category-title">
+            <span class="category-icon">▼</span>
+            📦 Elementos Genéricos (2)
+        </div>
+        <div id="generic-container" class="category-content"></div>
+    </div>
+
+    <!-- ESTRUCTURA DEL SET -->
+    <div class="element-category">
+        <div class="category-title">
+            <span class="category-icon">▼</span>
+            🏢 Estructura (Modular)
+        </div>
+        <div id="structure-container" class="category-content"></div>
+    </div>
+
+    <!-- CONTROLES DE TEXTURAS -->
+    <div class="element-category">
+        <div class="category-title">
+            <span class="category-icon">▼</span>
+            🎨 Cambiar Texturas
+        </div>
+        <div id="texture-controls" class="category-content"></div>
+    </div>
+
+    <button class="screenshot-button" id="screenshot-btn">📸 Capturar Pantalla</button>
+    <button class="reset-button">↺ Resetear Todo</button>
+</div>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+<script type="module" src="js/app.js"></script>
+
+</body>
+</html>
